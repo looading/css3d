@@ -1,9 +1,9 @@
 var funcList = [];
-var requestAnimationFrame = 
+var requestAnimationFrame =
 	window.requestAnimationFrame ||
-	window.mozRequestAnimationFrame || 
-	window.webkitRequestAnimationFrame || 
-	window.msRequestAnimationFrame || 
+	window.mozRequestAnimationFrame ||
+	window.webkitRequestAnimationFrame ||
+	window.msRequestAnimationFrame ||
 	window.oRequestAnimationFrame ||
 	function(callback) {
 	   setTimeout(callback, 1000 / 60);
@@ -14,9 +14,9 @@ var angle = ['0deg', '0deg', '0deg'];
 function transform (element, value, key) {
 	key = key || "Transform";
 	["Moz", "O", "Ms", "webkit", ""].forEach(function(prefix) {
-		element.style[prefix + key]= value;	
-	});	
-	
+		element.style[prefix + key]= value;
+	});
+
 	return element;
 }
 // 获取dom距离
@@ -59,35 +59,35 @@ function getDirection(o, x, y) {
 // 盒子旋转(跟随鼠标)
 function letsgo(msg, wrap) {
 		switch(msg.direct) {
-			case 'R': 
+			case 'R':
 				angle[1] = parseInt(angle[1], 10) + msg.abs.x + 'deg';
 				break;
-			case 'L': 
+			case 'L':
 				angle[1] = parseInt(angle[1], 10) - msg.abs.x + 'deg';
 				break;
-			case 'RU': 
+			case 'RU':
 				angle[1] = parseInt(angle[1], 10) + msg.abs.x + 'deg';
 				angle[0] = parseInt(angle[0], 10) + msg.abs.y + 'deg';
 				break;
-			case 'RD': 
+			case 'RD':
 				angle[1] = parseInt(angle[1], 10) + msg.abs.x + 'deg';
 				angle[0] = parseInt(angle[0], 10) - msg.abs.y + 'deg';
 				break;
-			case 'LU': 
+			case 'LU':
 				angle[1] = parseInt(angle[1], 10) - msg.abs.x + 'deg';
 				angle[0] = parseInt(angle[0], 10) + msg.abs.y + 'deg';
 				break;
-			case 'LD': 
+			case 'LD':
 				angle[1] = parseInt(angle[1], 10) - msg.abs.x + 'deg';
 				angle[0] = parseInt(angle[0], 10) - msg.abs.y + 'deg';
 				break;
-			case 'U': 
+			case 'U':
 				angle[0] = parseInt(angle[0], 10) + msg.abs.y + 'deg';
 				break;
-			case 'D': 
+			case 'D':
 				angle[0] = parseInt(angle[0], 10) - msg.abs.y + 'deg';
 				break;
-			default: 
+			default:
 
 				break;
 		}
@@ -108,7 +108,7 @@ funcList.push(function(i) {
 	var timer;
 	var list = [0, 120, 240]
 	function go() {
-			list = list.map(function(val, index) { 
+			list = list.map(function(val, index) {
 
 				var ls = transform(box[index], "translateZ(50px) " + "rotateY(" + val + "deg)");
 				return ++val;
@@ -124,7 +124,7 @@ funcList.push(function(i) {
 	var container = ['.container', i+1].join('_');
 	var boxList = $(container + ' .box');
 	var wrap = $(container + ' .wrap');
-	
+
 	var mouse = {
 		x: null,
 		y: null
@@ -138,7 +138,7 @@ funcList.push(function(i) {
 			var res = getDirection(mouse, curX, curY)
 			ev.push(res);
 			letsgo(res, wrap)
-		} 
+		}
 		mouse.x = curX;
 		mouse.y = curY;
 	}
@@ -152,3 +152,7 @@ funcList.push(function(i) {
 funcList.map(function(val, index) {
 	val(index);
 })
+
+
+
+console.log(1)
